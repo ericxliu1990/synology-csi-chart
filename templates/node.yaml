@@ -63,6 +63,11 @@ spec:
         app: node
         {{- include "synology-csi.selectorLabels" $ | nindent 8 }}
     spec:
+      tolerations:
+      - key: edge
+        operator: Equal
+        value: "true"
+        effect: NoSchedule
       containers:
         - name: node-driver-registrar
           args:
